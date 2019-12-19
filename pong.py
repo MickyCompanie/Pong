@@ -38,6 +38,37 @@ ball.color("white")
 ball.penup()
 ball.goto(0, 0)
 
-#main game loop
+# Fonctions
+
+def paddle1Up():
+    y = paddle1.ycor()
+    y += 20
+    paddle1.sety(y)
+
+def paddle1Down():
+    y = paddle1.ycor()
+    y -= 20
+    paddle1.sety(y)
+
+def paddle2Up():
+    y = paddle2.ycor()
+    y += 20
+    paddle2.sety(y)
+
+def paddle2Down():
+    y = paddle2.ycor()
+    y -= 20
+    paddle2.sety(y)
+
+# Keyboard binding
+
+wn.listen()
+wn.onkeypress(paddle1Up, "z")
+wn.onkeypress(paddle1Down, "s")
+wn.onkeypress(paddle2Up, "Up")
+wn.onkeypress(paddle2Down, "Down")
+
+# main game loop
+
 while True:
         wn.update()
