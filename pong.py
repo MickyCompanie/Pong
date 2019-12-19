@@ -1,6 +1,8 @@
 import turtle
+import winsound
+# pour linux et mac: import os
 
-# wn pour window
+# wn: contraction pour le fenêtre (window)
 wn = turtle.Screen()
 wn.title("Pong par Micky Companie")
 wn.bgcolor("Black")
@@ -98,10 +100,16 @@ while True:
         if ball.ycor() > 290:
             ball.sety(290)
             ball.dy *= -1
+            # pour linux os.system("aplay bounce.wav&")
+            # pour mac os.system("afplay bounce.wav&")
+            winsound.PlaySound("bounce.wav", winsound.SND_ASYNC)
 
         if ball.ycor() < -290:
             ball.sety(-290)
             ball.dy *= -1
+            # pour linux os.system("aplay bounce.wav&")
+            # pour mac os.system("afplay bounce.wav&")
+            winsound.PlaySound("bounce.wav", winsound.SND_ASYNC)
 
         if ball.xcor() > 390:
             ball.goto(0, 0)
@@ -122,7 +130,13 @@ while True:
         if (ball.xcor() > 340 and ball.xcor() < 350) and (ball.ycor() < paddle2.ycor() + 50 and ball.ycor() > paddle2.ycor() -50):
             ball.setx(340)
             ball.dx *= -1
+            # pour linux os.system("aplay bounce.wav&")
+            # pour mac os.system("afplay bounce.wav&")
+            winsound.PlaySound("bounce.wav", winsound.SND_ASYNC)
 
         if (ball.xcor() < -340 and ball.xcor() > -350) and (ball.ycor() < paddle1.ycor() + 50 and ball.ycor() > paddle1.ycor() -50):
             ball.setx(-340)
             ball.dx *= -1
+            # pour linux os.system("aplay bounce.wav&")
+            # pour mac os.system("afplay bounce.wav&")
+            winsound.PlaySound("bounce.wav", winsound.SND_ASYNC)
