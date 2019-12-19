@@ -7,10 +7,15 @@ wn.bgcolor("Black")
 wn.setup(width=800, height=600)
 wn.tracer(0)
 
+# Score
+
+score1 = 0
+score2 = 0
+
 # Paddle1
 
 paddle1 = turtle.Turtle()
-# ce n'est pas la vitesse du paddle en soit, mais la vitesse de son animation (0) met l'animation au maximum de son animation
+# ce n'est pas la vitesse du mouvement du paddle mais la vitesse de son animation. (0) met l'animation au maximum de son animation
 paddle1.speed(0)
 # par défaut la shape fait 20px/20px
 paddle1.shape("square")
@@ -40,6 +45,15 @@ ball.goto(0, 0)
 ball.dx = 0.25
 ball.dy = 0.25
 
+# Pen
+
+pen = turtle.Turtle()
+pen.speed(0)
+pen.color("white")
+pen.penup()
+pen.hideturtle()
+pen.goto(0, 260)
+pen.write("Player 1: 0  Player 2: 0", align="center", font=("Courier", 24, "normal"))
 
 # Fonctions
 
@@ -92,7 +106,23 @@ while True:
         if ball.xcor() > 390:
             ball.goto(0, 0)
             ball.dx *= -1
+            score1 += 1
+            pen.clear()
+            pen.write("Player 1: {}  Player 2: {}".format(score1, score2), align="center", font=("Courier", 24, "normal"))
 
         if ball.xcor() < -390:
             ball.goto(0, 0)
+            ball.dx *= -1
+            score2 +=1
+            pen.clear()
+            pen.write("Player 1: {}  Player 2: {}".format(score1, score2), align="center", font=("Courier", 24, "normal"))
+
+
+        # Paddle and ball collisions
+        if (ball.xcor() > 340 and ball.xcor() < 350) and (ball.ycor() < paddle2.ycor() + 50 and ball.ycor() > paddle2.ycor() -50):
+            ball.setx(340)
+            ball.dx *= -1
+
+        if (ball.xcor() < -340 and ball.xcor() > -350) and (ball.ycor() < paddle1.ycor() + 50 and ball.ycor() > paddle1.ycor() -50):
+            ball.setx(-340)
             ball.dx *= -1
